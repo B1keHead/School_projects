@@ -32,7 +32,7 @@ def merge_less_freqs(sl):
             diz_cod[char] = '1' + diz_cod.get(char, '')
             
         sl.append((low[0] + high[0], low[1] + high[1]))
-        print(sort_list(sl))
+        
     return diz_cod
 
 
