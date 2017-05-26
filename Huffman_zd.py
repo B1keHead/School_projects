@@ -1,15 +1,6 @@
 __author__ = 'Zanoni Devis'
 
 
-def sort_list(lf):
-    for x in range(1, len(lf)):
-        j = x
-        while j > 0 and lf[j][1] < lf[j-1][1]:
-            lf[j], lf[j-1] = lf[j-1], lf[j]
-            j -= 1
-    return lf
-
-
 def list_of_tuples(s):
     df = {}
     for i in s:
@@ -37,19 +28,26 @@ def merge_less_freqs(sl):
 
 
 def print_codifica(d, c):
-    print("codifica di " + d, end=": ")
+    print("codifica", end=": ")
+    final_cod = ''
     for x in d:
-        print(c[x], end='')
+        final_cod += c[x]
+    if (len(final_cod) % 8) != 0:
+        for x in range(8 - len(final_cod) % 8):
+            final_cod += '0'
+    print(final_cod)
 
 
 def main():
-    data = input("Inserisci la stringa: ")
+    d = open("Input.txt")
+    data = d.read()
+    d.close()
     list_freqs = list_of_tuples(data)
-    sorted_list = sort_list(list_freqs)
+    sorted_list = sorted(list_freqs, key = lambda freq: freq[1])
     print(sorted_list)
     cod = merge_less_freqs(sorted_list)
     print(cod)
-    print_codifica(data, cod)      
+    print_codifica(data, cod)
 
 
 main()
