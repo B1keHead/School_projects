@@ -4,7 +4,7 @@ __author__ = 'Zanoni Devis'
 def list_of_tuples(s):
     df = {}
     for i in s:
-        if not i in df:
+        if i not in df:
             df[i] = s.count(i)
     return [x for x in df.items()]
 
@@ -30,9 +30,6 @@ def print_codifica(d, c):
     final_cod = ''
     for x in d:
         final_cod += c[x]
-    if (len(final_cod) % 8) != 0:
-        for x in range(8 - len(final_cod) % 8):
-            final_cod += '0'
     print(final_cod)
 
 
@@ -40,7 +37,7 @@ def main():
     with open("Input.txt") as d:
         data = d.read()
 
-    sorted_list = sorted(list_of_tuples(data), key = lambda freq: freq[1])
+    sorted_list = sorted(list_of_tuples(data), key=lambda freq: freq[1])
     print(sorted_list)
     cod = merge_less_freqs(sorted_list)
     print(cod)
